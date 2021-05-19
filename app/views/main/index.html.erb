@@ -1,9 +1,64 @@
-<div class="d-flex align-items-center justify-content-center">
-  <h1>Homepage</h1>
+<% if Current.user %>
+<%= form_for Post.new do |f| %>
+  <div class="form-upload">
+    <%= f.file_field :post_photo %>
+  </div>
+
+<div class="custom-container">
+  <div class="mb-3">
+    <%= f.text_area :caption, class: "form-control", rows: "1", placeholder: "Your caption here.." %>
+  </div>
 </div>
 
-  <% if @user %>
-    Logged in as: <%= @user.email %>
+  <div class="form-group">
+    <%= f.text_field :user_id, value: Current.user.id, class:'d-none'%>
+  </div>
+  <br>
+  <div class="text-center">
+    <%= f.submit 'Create Post', class: 'btn btn-primary' %>
+  </div>
+<% end %>
 
-    <%= button_to "Logout", logout_path, method: :delete %>
+<div class="posts">
+  <% @posts.each do |post| %>
+  <section class="post">
+<div class="user">
+  <div class="avatar">
+    <% if post.user.avatar.attached? %>
+      <%= image_tag post.user.avatar %>
+    <% end %>
+  </div>
+  <div class="username">
+    <%= post.user.username %>
+  </div>
+</div>
+<%= image_tag post.post_photo, class: 'main-image' %>
+<div class="description">
+  <%= post.caption %>
+</div>
+</section>
   <% end %>
+</div>
+
+<% else %>
+
+<div class="d-flex align-items-center justify-content-center">
+
+  <div class="container">
+      <div class="mt-5 jumbotron text-center">
+  <h1>Welcome to Instaclone</h1>
+
+  <p class="mt-3">
+    It's Instagram, but better. Because it's only you here.
+  </p>
+
+  <div class="mt-5">
+    <a class="btn btn-primary mr-3" href="/signup">Sign up</a>
+    <a class="btn btn-outline-secondary" href="/login">Login</a>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<% end %>

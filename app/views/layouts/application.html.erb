@@ -13,9 +13,10 @@
 
   <body>
   <%= render partial: "shared/navbar" %>
-    <div class="container">
+    <main class="container" style="min-height: 500px;">
       <%= render partial: "shared/flash" %>
       <%= yield %>
-    </div>
+
+    </main>
   </body>
 </html>
