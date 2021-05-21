@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:new, :create, :show, :destroy]
 
-
-
+  namespace :api do
+    get "users", to: "users#username_exists"
+  end
 end
