@@ -22,8 +22,6 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'bootstrap', '~> 5.0', '>= 5.0.1'
-gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
 
